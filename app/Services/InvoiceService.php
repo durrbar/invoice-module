@@ -45,7 +45,7 @@ class InvoiceService
      */
     private function generateInvoiceNumber(): string
     {
-        return 'INV-' . strtoupper(uniqid());
+        return 'INV-' . now()->format('Ymd') . strtoupper(bin2hex(random_bytes(4)));
     }
 
     /**
