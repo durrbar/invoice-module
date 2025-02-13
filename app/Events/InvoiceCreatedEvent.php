@@ -1,15 +1,14 @@
 <?php
-
 namespace Modules\Invoice\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Modules\Invoice\Models\Invoice;
 
-class InvoicePaidEvent
+class InvoiceCreatedEvent
 {
     use Dispatchable;
 
-    public Invoice $invoice;
+    public $invoice;
 
     /**
      * Create a new event instance.

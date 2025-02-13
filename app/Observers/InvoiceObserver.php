@@ -2,6 +2,7 @@
 
 namespace Modules\Invoice\Observers;
 
+use Modules\Invoice\Events\InvoiceCreatedEvent;
 use Modules\Invoice\Events\InvoicePaidEvent;
 use Modules\Invoice\Models\Invoice;
 
@@ -12,7 +13,8 @@ class InvoiceObserver
      */
     public function created(Invoice $invoice): void
     {
-        //
+        // Fire an event when an invoice is created
+        event(new InvoiceCreatedEvent($invoice));
     }
 
     /**

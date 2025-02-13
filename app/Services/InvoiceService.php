@@ -2,9 +2,9 @@
 
 namespace Modules\Invoice\Services;
 
+use Exception;
 use Modules\Invoice\Models\Invoice;
 use Modules\Order\Models\Order;
-use Exception;
 
 class InvoiceService
 {
@@ -71,5 +71,16 @@ class InvoiceService
     public function updateInvoiceStatus(Invoice $invoice, string $status): void
     {
         $invoice->update(['status' => $status]);
+    }
+
+    /**
+     * Paid the invoice status.
+     *
+     * @param Invoice $invoice
+     * @return void
+     */
+    public function markInvoicePaid(Invoice $invoice): void
+    {
+        $this->updateInvoiceStatus($invoice, 'paid');
     }
 }
