@@ -1,4 +1,5 @@
 <?php
+
 namespace Modules\Invoice\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
@@ -12,8 +13,6 @@ class InvoiceCreatedEvent
 
     /**
      * Create a new event instance.
-     *
-     * @param Invoice $invoice
      */
     public function __construct(Invoice $invoice)
     {

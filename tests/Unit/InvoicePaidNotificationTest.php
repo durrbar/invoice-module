@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class InvoicePaidNotificationTest extends TestCase
 {
-    public function testInvoicePaidNotificationSendsEmail()
+    public function test_invoice_paid_notification_sends_email()
     {
         Notification::fake();
 
@@ -19,14 +19,15 @@ class InvoicePaidNotificationTest extends TestCase
 
         // Trigger the notification
         $notification = new InvoicePaidNotification($invoice);
-        Notification::send(new AnonymousNotifiable, $notification);
+        Notification::send(new AnonymousNotifiable(), $notification);
 
         // Assert the notification was sent via email
         Notification::assertSentTo(
-            new AnonymousNotifiable,
+            new AnonymousNotifiable(),
             InvoicePaidNotification::class,
-            function ($notification, $channels, $notifiableObject) use ($invoice, $notifiable) {
+            function ($notification, $channels, $notifiableObject) use ($notifiable) {
                 $mailData = $notification->toMail($notifiable);
+
                 return $mailData->subject === 'Invoice Paid' &&
                        str_contains($mailData->render(), 'Your invoice #123 has been paid successfully.');
             }

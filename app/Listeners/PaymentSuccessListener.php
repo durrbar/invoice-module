@@ -1,8 +1,9 @@
 <?php
+
 namespace Modules\Invoice\Listeners;
 
-use Modules\Payment\Events\PaymentSuccessEvent;
 use Modules\Invoice\Services\InvoiceService;
+use Modules\Payment\Events\PaymentSuccessEvent;
 
 class PaymentSuccessListener
 {

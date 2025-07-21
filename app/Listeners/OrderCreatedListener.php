@@ -2,8 +2,8 @@
 
 namespace Modules\Invoice\Listeners;
 
-use Modules\Order\Events\OrderCreatedEvent;
 use Modules\Invoice\Services\InvoiceService;
+use Modules\Order\Events\OrderCreatedEvent;
 
 class OrderCreatedListener
 {

@@ -14,6 +14,6 @@ use Modules\Invoice\Http\Controllers\InvoiceController;
  *
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
+Route::middleware(['auth:sanctum'])->prefix('v1')->group(function (): void {
     Route::apiResource('invoice', InvoiceController::class)->names('invoice');
 });

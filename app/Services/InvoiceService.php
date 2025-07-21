@@ -11,8 +11,6 @@ class InvoiceService
     /**
      * Create a new invoice for an order.
      *
-     * @param Order $order
-     * @return Invoice
      * @throws Exception
      */
     public function createInvoice(Order $order): Invoice
@@ -40,20 +38,15 @@ class InvoiceService
 
     /**
      * Generate a unique invoice number.
-     *
-     * @return string
      */
     private function generateInvoiceNumber(): string
     {
-        return 'INV-' . now()->format('Ymd') . strtoupper(bin2hex(random_bytes(4)));
+        return 'INV-'.now()->format('Ymd').strtoupper(bin2hex(random_bytes(4)));
     }
 
     /**
      * Calculate taxes based on the order amount.
      * (You can extend this with a more complex tax calculation if necessary.)
-     *
-     * @param Order $order
-     * @return float
      */
     private function calculateTaxes(Order $order): float
     {
@@ -63,10 +56,6 @@ class InvoiceService
 
     /**
      * Update the invoice status.
-     *
-     * @param Invoice $invoice
-     * @param string $status
-     * @return void
      */
     public function updateInvoiceStatus(Invoice $invoice, string $status): void
     {
@@ -75,9 +64,6 @@ class InvoiceService
 
     /**
      * Paid the invoice status.
-     *
-     * @param Invoice $invoice
-     * @return void
      */
     public function markInvoicePaid(Invoice $invoice): void
     {
