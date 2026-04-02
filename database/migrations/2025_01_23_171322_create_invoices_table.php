@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Modules\Invoice\Enums\InvoicePaymentStatus;
 
 return new class() extends Migration
 {
@@ -17,7 +18,10 @@ return new class() extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignUuid('order_id')->constrained()->cascadeOnDelete();
-            $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
+            $table->enum(
+                'payment_status',
+                InvoicePaymentStatus::cases()
+            )->default(InvoicePaymentStatus::Pending->value);
 
             $table->decimal('sub_total', 10, 2);
             $table->decimal('taxes', 10, 2);
