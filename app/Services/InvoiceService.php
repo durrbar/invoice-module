@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Invoice\Services;
 
 use Exception;
@@ -37,24 +39,6 @@ class InvoiceService
     }
 
     /**
-     * Generate a unique invoice number.
-     */
-    private function generateInvoiceNumber(): string
-    {
-        return 'INV-'.now()->format('Ymd').strtoupper(bin2hex(random_bytes(4)));
-    }
-
-    /**
-     * Calculate taxes based on the order amount.
-     * (You can extend this with a more complex tax calculation if necessary.)
-     */
-    private function calculateTaxes(Order $order): float
-    {
-        // For simplicity, assuming a fixed 10% tax rate
-        return $order->total_amount * 0.1;
-    }
-
-    /**
      * Update the invoice status.
      */
     public function updateInvoiceStatus(Invoice $invoice, string $status): void
@@ -68,5 +52,23 @@ class InvoiceService
     public function markInvoicePaid(Invoice $invoice): void
     {
         $this->updateInvoiceStatus($invoice, 'paid');
+    }
+
+    /**
+     * Generate a unique invoice number.
+     */
+    private function generateInvoiceNumber(): string
+    {
+        return 'INV-'.now()->format('Ymd').mb_strtoupper(bin2hex(random_bytes(4)));
+    }
+
+    /**
+     * Calculate taxes based on the order amount.
+     * (You can extend this with a more complex tax calculation if necessary.)
+     */
+    private function calculateTaxes(Order $order): float
+    {
+        // For simplicity, assuming a fixed 10% tax rate
+        return $order->total_amount * 0.1;
     }
 }

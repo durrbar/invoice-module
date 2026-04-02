@@ -11,7 +11,7 @@ use Modules\Invoice\Models\Invoice;
 use Modules\Invoice\Observers\InvoiceObserver;
 use Tests\TestCase;
 
-final class InvoiceObserverTest extends TestCase
+class InvoiceObserverTest extends TestCase
 {
     public function test_updated_dispatches_invoice_paid_event_when_payment_status_is_paid(): void
     {

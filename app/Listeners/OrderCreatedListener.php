@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Invoice\Listeners;
 
 use Modules\Invoice\Services\InvoiceService;
@@ -7,7 +9,7 @@ use Modules\Order\Events\OrderCreatedEvent;
 
 class OrderCreatedListener
 {
-    protected InvoiceService $invoiceService;
+    private InvoiceService $invoiceService;
 
     public function __construct(InvoiceService $invoiceService)
     {

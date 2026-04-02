@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Invoice\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,19 +16,11 @@ use Modules\Invoice\Observers\InvoiceObserver;
 // use Modules\Invoice\Database\Factories\InvoiceFactory;
 
 #[ObservedBy([InvoiceObserver::class])]
-final class Invoice extends Model
+#[Fillable([])]
+class Invoice extends Model
 {
     use HasFactory;
     use HasUuids;
-
-    /**
-     * The attributes that are mass assignable.
-     */
-    protected $fillable = [];
-
-    protected $casts = [
-        'payment_status' => InvoicePaymentStatus::class,
-    ];
 
     // protected static function newFactory(): InvoiceFactory
     // {
@@ -37,5 +30,12 @@ final class Invoice extends Model
     public function order(): BelongsTo
     {
         return $this->belongsTo(config('invoice.order.model'), 'order_id', 'id');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'payment_status' => InvoicePaymentStatus::class,
+        ];
     }
 }

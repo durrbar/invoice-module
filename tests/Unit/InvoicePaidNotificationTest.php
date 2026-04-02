@@ -12,7 +12,7 @@ use Modules\Notification\Notifications\InvoicePaidNotification;
 use Modules\Order\Models\Order;
 use Tests\TestCase;
 
-final class InvoicePaidNotificationTest extends TestCase
+class InvoicePaidNotificationTest extends TestCase
 {
     protected function tearDown(): void
     {

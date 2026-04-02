@@ -9,7 +9,7 @@ use Modules\Invoice\Events\InvoiceCreatedEvent;
 use Modules\Invoice\Events\InvoicePaidEvent;
 use Modules\Invoice\Models\Invoice;
 
-final class InvoiceObserver
+class InvoiceObserver
 {
     /**
      * Handle the Invoice "created" event.
