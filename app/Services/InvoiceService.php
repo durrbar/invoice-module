@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Invoice\Services;
 
 use Exception;
+use Modules\Invoice\Enums\InvoicePaymentStatus;
 use Modules\Invoice\Models\Invoice;
 use Modules\Order\Models\Order;
 
@@ -21,7 +22,7 @@ class InvoiceService
             // Create the invoice based on order data
             $invoice = $order->invoice()->create([
                 'invoice_number' => $this->generateInvoiceNumber(),
-                'status' => 'pending', // Default status
+                'status' => InvoicePaymentStatus::Pending->value, // Default status
                 'sub_total' => $order->total_amount,
                 'discount' => 0, // You can add logic for discounts
                 'shipping' => 0, // Add logic for shipping charges
@@ -51,7 +52,7 @@ class InvoiceService
      */
     public function markInvoicePaid(Invoice $invoice): void
     {
-        $this->updateInvoiceStatus($invoice, 'paid');
+        $this->updateInvoiceStatus($invoice, InvoicePaymentStatus::Paid->value);
     }
 
     /**
