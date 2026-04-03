@@ -9,12 +9,7 @@ use Modules\Payment\Events\PaymentSuccessEvent;
 
 class PaymentSuccessListener
 {
-    private InvoiceService $invoiceService;
-
-    public function __construct(InvoiceService $invoiceService)
-    {
-        $this->invoiceService = $invoiceService;
-    }
+    public function __construct(private InvoiceService $invoiceService) {}
 
     public function handle(PaymentSuccessEvent $event)
     {
